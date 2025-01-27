@@ -1,4 +1,3 @@
-% Finance Check Expert System with numerical inputs and 20+ rules
 advice(save_more) :- save_more.
 advice(invest_conservatively) :- invest_conservatively.
 advice(invest_aggressively) :- invest_aggressively.
@@ -21,7 +20,6 @@ advice(plan_for_education) :- plan_for_education.
 advice(avoid_unnecessary_loans) :- avoid_unnecessary_loans.
 advice(build_credit_score) :- build_credit_score.
 
-% Rules for financial advice based on numeric ranges
 save_more :-
     income(I), expenses(E), savings(S),
     I < 2000, E > 1500, S < 500.
@@ -107,25 +105,24 @@ build_credit_score :-
     credit_score(CS),
     CS < 600.
 
-% Questions to gather user financial information
 ask_financial_status :-
-    write('What is your monthly income (in £)? '),
+    write('What is your monthly income (in Â£)? '),
     read(Income),
     assertz(income(Income)),
 
-    write('What are your monthly expenses (in £)? '),
+    write('What are your monthly expenses (in Â£)? '),
     read(Expenses),
     assertz(expenses(Expenses)),
 
-    write('What is your current savings amount (in £)? '),
+    write('What is your current savings amount (in Â£)? '),
     read(Savings),
     assertz(savings(Savings)),
 
-    write('What is your current debt amount (in £)? '),
+    write('What is your current debt amount (in Â£)? '),
     read(Debt),
     assertz(debt(Debt)),
 
-    write('What is your current investment amount (in £)? '),
+    write('What is your current investment amount (in Â£)? '),
     read(Investments),
     assertz(investments(Investments)),
 
@@ -137,11 +134,11 @@ ask_financial_status :-
     read(Age),
     assertz(age(Age)),
 
-    write('What is your monthly healthcare cost (in £)? '),
+    write('What is your monthly healthcare cost (in Â£)? '),
     read(HealthcareCosts),
     assertz(healthcare_costs(HealthcareCosts)),
 
-    write('What is your housing cost (in £)? '),
+    write('What is your housing cost (in Â£)? '),
     read(HousingCosts),
     assertz(housing_costs(HousingCosts)),
 
@@ -153,11 +150,11 @@ ask_financial_status :-
     read(Dependents),
     assertz(dependents(Dependents)),
 
-    write('What is your insurance coverage amount (in £)? '),
+    write('What is your insurance coverage amount (in Â£)? '),
     read(InsuranceCoverage),
     assertz(insurance_coverage(InsuranceCoverage)).
 
-% Main predicate to suggest financial advice
+
 start :-
     write('Welcome to the Finance Advice Expert System!'), nl,
     ask_financial_status,
@@ -168,13 +165,13 @@ start :-
          write('Sorry, no specific advice matches your financial status.')),
     clean_up.
 
-% Helper predicate to print advice
+
 print_advice([]).
 print_advice([H|T]) :-
     write('- '), write(H), nl,
     print_advice(T).
 
-% Clean up dynamic facts
+
 clean_up :-
     retractall(income(_)),
     retractall(expenses(_)),
